@@ -17,8 +17,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/**").permitAll() // Allow public API access for testing
-                .requestMatchers("/login", "/signup", "/css/**", "/js/**").permitAll() // Public HTML routes
+                .requestMatchers("/api/auth/**").permitAll() // Permit signup and signin API
+                .requestMatchers("/css/**", "/js/**").permitAll() // Public HTML assets
                 .anyRequest().authenticated() // Protect other routes
                 .and()
                 .formLogin()
