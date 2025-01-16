@@ -1,8 +1,8 @@
 package com.example.spring_security_jwt;
 
-import com.example.spring_security_jwt.models.ERole;
-import com.example.spring_security_jwt.models.Role;
-import com.example.spring_security_jwt.repositories.RoleRepository;
+import com.example.spring_security_jwt.Models.ERole;
+import com.example.spring_security_jwt.Models.Role;
+import com.example.spring_security_jwt.Repositories.RoleRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
