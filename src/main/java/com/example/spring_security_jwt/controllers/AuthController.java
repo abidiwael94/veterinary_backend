@@ -29,8 +29,8 @@ import com.example.spring_security_jwt.payload.request.LoginRequest;
 import com.example.spring_security_jwt.payload.request.SignupRequest;
 import com.example.spring_security_jwt.payload.response.JwtResponse;
 import com.example.spring_security_jwt.payload.response.MessageResponse;
-import com.example.spring_security_jwt.repository.RoleRepository;
-import com.example.spring_security_jwt.repository.UserRepository;
+import com.example.spring_security_jwt.repositories.RoleRepository;
+import com.example.spring_security_jwt.repositories.UserRepository;
 import com.example.spring_security_jwt.security.jwt.JwtUtils;
 import com.example.spring_security_jwt.security.services.UserDetailsImpl;
 

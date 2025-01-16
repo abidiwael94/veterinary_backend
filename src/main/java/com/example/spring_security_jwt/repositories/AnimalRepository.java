@@ -1,4 +1,4 @@
-package com.example.spring_security_jwt.repository;
+package com.example.spring_security_jwt.repositories;
 
 import com.example.spring_security_jwt.models.Animal;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package com.example.spring_security_jwt.repository;
+package com.example.spring_security_jwt.repositories;
 
 import java.util.Optional;
 
