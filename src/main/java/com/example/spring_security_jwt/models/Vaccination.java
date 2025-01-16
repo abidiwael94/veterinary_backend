@@ -12,6 +12,10 @@ public class Vaccination {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;  // Primary key
-    private String vaccinName;
-    private Date vaccinDate;
+    private String name;
+    private Date date;
+
+    @ManyToOne
+    @JoinColumn(name = "animal_id", nullable = false)
+    private Animal animal;
 }

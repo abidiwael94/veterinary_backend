@@ -17,4 +17,8 @@ public class Appointment {
     private Date date;
     private String time;
     private int tel;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)  // Foreign key to the 'users' table
+    private User user;
 }
