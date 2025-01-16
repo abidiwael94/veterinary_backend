@@ -128,4 +128,14 @@ public class AuthController {
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser() {
+        Logger logger = LoggerFactory.getLogger(AuthController.class);
+        logger.info("Logging out user. Clearing security context...");
+        SecurityContextHolder.clearContext();
+        logger.info("Security context cleared.");
+        logger.info("User logged out successfully.");
+        return ResponseEntity.ok(new MessageResponse("You have successfully logged out!"));
+    }
 }
