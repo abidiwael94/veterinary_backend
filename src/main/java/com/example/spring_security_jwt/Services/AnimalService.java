@@ -2,6 +2,7 @@ package com.example.spring_security_jwt.Services;
 
 import com.example.spring_security_jwt.Models.Animal;
 import com.example.spring_security_jwt.Repositories.AnimalRepository;
+import com.example.spring_security_jwt.Repositories.MedicalReportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +11,9 @@ import java.util.Optional;
 
 @Service
 public class AnimalService {
+
+    @Autowired
+    private MedicalReportRepository medicalReportRepository;
 
     private final AnimalRepository animalRepository;
 
@@ -47,6 +51,7 @@ public class AnimalService {
     }
 
     public void deleteAnimal(Long id) {
+        medicalReportRepository.deleteByAnimalId(id);
         animalRepository.deleteById(id);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.spring_security_jwt.Services;
 
 import com.example.spring_security_jwt.Models.User;
+import com.example.spring_security_jwt.Repositories.AnimalRepository;
 import com.example.spring_security_jwt.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,12 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final AnimalRepository animalRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, AnimalRepository animalRepository) {
         this.userRepository = userRepository;
+        this.animalRepository = animalRepository;
     }
 
     public List<User> getAllUsers() {
@@ -49,6 +52,7 @@ public class UserService {
     }
 
     public void deleteUser(Long id) {
+        animalRepository.deleteByUserId(id);
         userRepository.deleteById(id);
     }
 
