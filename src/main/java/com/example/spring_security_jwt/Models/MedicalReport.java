@@ -1,5 +1,6 @@
 package com.example.spring_security_jwt.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,11 +15,13 @@ public class MedicalReport {
     private String observation;
     private String medicalHistory;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)  // Foreign key to the 'users' table
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference(value = "user-medical-report")
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name = "animal_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "animal_id")
+    @JsonBackReference(value = "animal-medical-report")
     private Animal animal;
 }

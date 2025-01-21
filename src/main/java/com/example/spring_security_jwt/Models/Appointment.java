@@ -1,5 +1,6 @@
 package com.example.spring_security_jwt.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,8 @@ public class Appointment {
     private String time;
     private int tel;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)  // Foreign key to the 'users' table
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference(value = "user-appointment-report")
     private User user;
 }

@@ -15,25 +15,21 @@ public class VaccinationRestController {
     @Autowired
     private VaccinationRepository vaccinationRepository;
 
-    // Get all vaccinations
     @GetMapping
     public List<Vaccination> getAllVaccinations() {
         return vaccinationRepository.findAll();
     }
 
-    // Get a specific vaccination by ID
     @GetMapping("/{id}")
     public Optional<Vaccination> getVaccinationById(@PathVariable Long id) {
         return vaccinationRepository.findById(id);
     }
 
-    // Create a new vaccination
     @PostMapping
     public Vaccination createVaccination(@RequestBody Vaccination vaccination) {
         return vaccinationRepository.save(vaccination);
     }
 
-    // Update a vaccination
     @PutMapping("/{id}")
     public Vaccination updateVaccination(@PathVariable Long id, @RequestBody Vaccination vaccinationDetails) {
         return vaccinationRepository.findById(id).map(vaccination -> {
@@ -44,7 +40,6 @@ public class VaccinationRestController {
         }).orElseThrow(() -> new RuntimeException("Vaccination not found with id " + id));
     }
 
-    // Delete a vaccination
     @DeleteMapping("/{id}")
     public void deleteVaccination(@PathVariable Long id) {
         vaccinationRepository.deleteById(id);

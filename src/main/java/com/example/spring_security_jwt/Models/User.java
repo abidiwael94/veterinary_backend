@@ -1,8 +1,11 @@
 package com.example.spring_security_jwt.Models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -43,15 +46,18 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<com.example.spring_security_jwt.Models.Role> roles = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Appointment> appointments = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Animal> animals = new HashSet<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Animal> animals = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<MedicalReport> medicalReports = new HashSet<>();  // One User manages many MedicalReports
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "user-medical-report")
+    private List<MedicalReport> medicalReports = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "user-appointment-report")
+    private List<Appointment> appointments = new ArrayList<>();
 
     public User(String username, String email, String password) {
         this.username = username;

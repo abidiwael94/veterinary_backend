@@ -1,5 +1,7 @@
 package com.example.spring_security_jwt.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.*;
@@ -19,14 +21,18 @@ public class Animal {
     private String gender;
     private int weight;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)  // Foreign key to the 'users' table
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
-    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "animal", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Vaccination> vaccinations = new ArrayList<>();
 
-    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "animal", fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "animal-medical-report")
     private List<MedicalReport> medicalReports = new ArrayList<>();
+
 
 }
