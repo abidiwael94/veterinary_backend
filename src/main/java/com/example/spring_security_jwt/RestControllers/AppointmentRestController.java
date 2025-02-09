@@ -7,7 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -45,13 +47,20 @@ public class AppointmentRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteAppointment(@PathVariable Long id) {
+    public ResponseEntity<Map<String, String>> deleteAppointment(@PathVariable Long id) {
         try {
             appointmentService.deleteAppointment(id);
-            return ResponseEntity.ok("Appointment with ID " + id + " has been successfully deleted.");
+            // Créez une carte avec un message JSON
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Appointment with ID " + id + " has been successfully deleted.");
+            return ResponseEntity.ok(response);  // Répondre avec un objet JSON
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Failed to delete appointment with ID " + id + ": " + e.getMessage());
+            // En cas d'erreur, répondre avec un message d'erreur au format JSON
+            Map<String, String> response = new HashMap<>();
+            response.put("error", "Failed to delete appointment with ID " + id + ": " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
+
 }
+
