@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserRestController {
 
     @Autowired
@@ -25,6 +25,7 @@ public class UserRestController {
         this.userService = userService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
         logger.debug("Fetching all users");

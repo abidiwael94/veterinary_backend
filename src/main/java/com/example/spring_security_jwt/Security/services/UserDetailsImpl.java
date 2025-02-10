@@ -12,6 +12,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.example.spring_security_jwt.Models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.management.relation.Role;
+
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
@@ -100,4 +102,11 @@ public class UserDetailsImpl implements UserDetails {
         UserDetailsImpl user = (UserDetailsImpl) o;
         return Objects.equals(id, user.id);
     }
+
+    public List<String> getRoles() {
+        return authorities.stream()
+                .map(GrantedAuthority::getAuthority)  // Extrait le nom du rôle (par exemple "ROLE_USER")
+                .collect(Collectors.toList());
+    }
+
 }

@@ -25,6 +25,7 @@ public class AnimalRestController {
         this.animalService = animalService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
     public ResponseEntity<List<Animal>> getAllAnimals() {
         logger.debug("Fetching all animals");
@@ -50,6 +51,7 @@ public class AnimalRestController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<Animal> createAnimal(@RequestBody Animal animal) {
         logger.debug("Creating animal with name: {}", animal.getName());
