@@ -38,6 +38,7 @@ public class UserRestController {
         return ResponseEntity.ok(users);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         logger.debug("Fetching user by ID: {}", id);
@@ -51,6 +52,7 @@ public class UserRestController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user) {
         logger.debug("Creating user with username: {}", user.getUsername());
@@ -72,6 +74,7 @@ public class UserRestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
         logger.debug("Updating user with ID: {}", id);
@@ -85,6 +88,7 @@ public class UserRestController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id) {
         logger.debug("Attempting to delete user with ID: {}", id);
